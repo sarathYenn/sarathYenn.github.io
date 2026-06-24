@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = await Astro.glob('./posts/*.md');
+const sorted = posts.sort((a, b) =>
+  new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
+);
+---
+
+<BaseLayout title="Posts">
+  <section class="hero">
+    <h1>Arcturan Labs</h1>
+    <p>Engineering deep-dives on distributed systems, architecture decisions, and the craft of building reliable software at scale.</p>
+  </section>
+
+  <section class="posts">
+    {sorted.map((post) => (
+      <a href={post.url} class="post-card">
+        <div class="post-meta">
+          <time>{new Date(post.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
+          {post.frontmatter.tags && post.frontmatter.tags.slice(0, 2).map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+        <h2>{post.frontmatter.title}</h2>
+        <p class="excerpt">{post.frontmatter.description}</p>
+      </a>
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero p { color: var(--muted); font-size: 1.05rem; max-width: 520px; }
+
+  .post-card {
+    display: block;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .post-card:hover h2 { color: var(--accent-light); }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .tag {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.1rem 0.5rem;
+    font-size: 0.72rem;
+    color: var(--accent-light);
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    transition: color 0.15s;
+  }
+
+  .excerpt { color: var(--muted); font-size: 0.92rem; }
+</style>

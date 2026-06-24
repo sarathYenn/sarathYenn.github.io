@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About">
+  <article class="about">
+    <h1>About</h1>
+    <p>
+      I'm Sarath, a Principal Engineer at <strong>Arcturan Labs</strong>. I write about distributed systems,
+      engineering decisions, and the hard problems that show up when software meets reality at scale.
+    </p>
+    <p>
+      These posts are the things I wish existed when I was debugging production incidents at 2am,
+      or trying to convince stakeholders why the boring solution is usually the right one.
+    </p>
+    <h2>What I write about</h2>
+    <ul>
+      <li>Distributed systems & reliability engineering</li>
+      <li>Architecture decisions and the trade-offs behind them</li>
+      <li>Platform engineering & developer experience</li>
+      <li>Engineering leadership from the IC perspective</li>
+    </ul>
+    <h2>Get in touch</h2>
+    <p>
+      Find me on <a href="https://github.com/sarathYenn">GitHub</a> or reach out at
+      <a href="mailto:sarathyennamani@gmail.com">sarathyennamani@gmail.com</a>.
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .about h1 { font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; }
+  .about h2 { font-size: 1.2rem; font-weight: 700; margin: 2rem 0 0.75rem; }
+  .about p { margin-bottom: 1.25rem; color: var(--text); }
+  .about ul { padding-left: 1.5rem; color: var(--muted); }
+  .about li { margin-bottom: 0.4rem; }
+</style>
