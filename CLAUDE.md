@@ -49,6 +49,15 @@ The index page picks it up automatically — no registration needed. The `layout
 - **Narration voice.** Write as someone who has studied a problem space deeply and is sharing distilled findings — not as someone debugging their own system. Phrases like "teams that do X tend to…" or "a common pattern is…" fit the voice; "at my last job we…" does not.
 - **Keep examples clearly illustrative.** When an example is necessary, signal that it is hypothetical ("imagine a service that…", "consider a team where…").
 
+## Branch and PR workflow
+
+**Never push directly to `main`.** All changes — new posts, layout edits, config tweaks — go through a feature branch and PR.
+
+1. **Branch naming.** `<category>/<short-slug>`. Categories: `post/`, `feat/`, `fix/`, `chore/`. Example: `post/boring-tech-wins`.
+2. **Commit messages.** Imperative mood, lead with the why. Examples: `post: add article on boring technology`, `fix: correct date on diffusion-models post`.
+3. **Open a PR** targeting `main` via `gh pr create`. Do not merge your own PR — the user reviews and merges.
+4. **Direct-push exception.** Only if the user explicitly says "push to main" in the current turn.
+
 ## Deployment
 
-Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds with Node 20 and deploys `dist/` to GitHub Pages. The custom domain `blog.arcturanlabs.com` is set via `public/CNAME` — do not delete or modify that file.
+Merging to `main` triggers `.github/workflows/deploy.yml`, which builds with Node 20 and deploys `dist/` to GitHub Pages. The custom domain `blog.arcturanlabs.com` is set via `public/CNAME` — do not delete or modify that file.
